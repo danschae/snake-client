@@ -5,20 +5,21 @@ const connect = function() {
     host: 'localhost',
     port: 50541
   });
+
   // interpret incoming data as text
   conn.setEncoding('utf8'); 
 
-  conn.on('connection', () => {
+  conn.on('connect', () => {
     console.log("Succesfully connected to game server!")
   });
 
-  conn.on('data', () => {
-    conn.write("Name: DJS")
+  conn.on('connect', () => {
+    conn.write("Name: DJS");
   })
 
-  conn.on('data', () => {
-    console.log("you ded cuz you idled");
-    console.log("it's got a sharp tongue this server!")
+  conn.on('data', (data) => {
+    console.log(data);
+
   });
 
   return conn;
